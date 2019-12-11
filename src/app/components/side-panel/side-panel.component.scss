@@ -53,9 +53,13 @@
     }
 
     .filter {
-      margin: $base-spacing * 2 0;
+      margin: $base-spacing * 4 0;
       width: 100%;
       min-height: 80px;
+
+      h3 {
+        margin-bottom: $base-spacing * 2;
+      }
     }
 
     .dropdown {

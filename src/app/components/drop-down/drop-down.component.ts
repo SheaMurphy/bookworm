@@ -7,7 +7,7 @@ import { faSortDown } from "@fortawesome/free-solid-svg-icons";
   styleUrls: ["./drop-down.component.scss"]
 })
 export class DropdownComponent {
-  @Input() label = "Items";
+  @Input() label: string;
   @Input() actionLabel?: string;
   @Output() action? = new EventEmitter();
 

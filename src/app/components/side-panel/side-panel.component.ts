@@ -17,7 +17,7 @@ export class SidePanelComponent {
   faFilter = faFilter;
   menuOpen = false;
   filters: IFilters = {
-    genre: "",
+    genre: "Choose a genre",
     searchText: "",
     pageCount: 0
   };
