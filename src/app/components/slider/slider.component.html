@@ -2,12 +2,13 @@
   <input
     type="range"
     #slider
-    (input)="handleInput.emit(slider.value)"
+    (input)="handleSlide(slider.value)"
+    [value]="value"
     [max]="max"
   />
   <div class="values">
     <p>0</p>
-    <p class="count">{{ slider.value }}</p>
+    <p class="count">{{ value }}</p>
     <p>{{ max }}</p>
   </div>
 </div>
