@@ -6,5 +6,5 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  public title = "ng-bookworm-challenges";
+  public title = "bookworm";
 }

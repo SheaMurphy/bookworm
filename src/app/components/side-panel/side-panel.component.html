@@ -20,7 +20,7 @@
       <h3>Number of pages</h3>
       <app-slider
         [max]="maxPages"
-        (handleInput)="filteredList = setFilter('pageCount', $event)"
+        (handleInput)="setFilter('pageCount', $event)"
       ></app-slider>
     </section>
 
