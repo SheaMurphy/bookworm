@@ -1,0 +1,16 @@
+<section>
+  <section class="book-grid" *ngIf="books.length > 0">
+    <div *ngFor="let book of books">
+      <app-book
+        [book]="book"
+        (handleOpenHeartClick)="addToFavourites.emit($event)"
+        (handleHeartClick)="removeFromFavourites.emit($event)"
+        (selectBook)="selectBook.emit($event)"
+      ></app-book>
+    </div>
+  </section>
+  <p class="qa-feedback" *ngIf="books.length === 0">
+    Search our library for an author and begin adding to your favourites
+    collection
+  </p>
+</section>

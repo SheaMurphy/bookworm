@@ -1,0 +1,9 @@
+@import "./variables.scss";
+
+.app {
+  max-width: 100vw;
+
+  .route {
+    padding-top: $nav-height;
+  }
+}

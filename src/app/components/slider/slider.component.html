@@ -1,0 +1,13 @@
+<div>
+  <input
+    type="range"
+    #slider
+    (input)="handleInput.emit(slider.value)"
+    [max]="max"
+  />
+  <div class="values">
+    <p>0</p>
+    <p class="count">{{ slider.value }}</p>
+    <p>{{ max }}</p>
+  </div>
+</div>

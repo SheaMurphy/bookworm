@@ -1,0 +1,106 @@
+@import "../../variables.scss";
+
+div {
+  height: $nav-height;
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: $faded-text;
+  height: 40px;
+
+  button {
+    padding-left: 0.5em;
+    border: solid 2px transparent;
+    border: 1px solid $faded-text-light;
+    width: calc(100% - 40px);
+    background-color: white;
+    font-size: 1rem;
+    text-align: left;
+    height: 100%;
+    font-weight: bold;
+    color: $faded-text;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .fa-wrap {
+    height: 2.5em;
+    background-color: $secondary-color;
+    height: 100%;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: white;
+      cursor: pointer;
+      border: solid 1px $secondary-color;
+
+      fa-icon {
+        color: $secondary-color;
+      }
+    }
+
+    fa-icon {
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: 10px;
+    }
+  }
+
+  ul {
+    position: absolute;
+    z-index: 3;
+    top: 40px;
+    list-style-type: none;
+    background-color: white;
+    border: 1px solid $faded-text-light;
+    border-top: none;
+    width: calc(100% - 40px);
+    max-height: 10em;
+    overflow-y: auto;
+
+    // box-sizing: bor-box;
+
+    ::ng-deep li {
+      // padding: 0.5em 0;
+      border-top: 1px solid $faded-text-light;
+      font-size: 1rem;
+      padding: 0.5em;
+      font-weight: bold;
+      color: $faded-text;
+
+      &:first-child {
+        border-top: none;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: $secondary-highlight;
+        color: white;
+      }
+
+      &.active {
+        background-color: $secondary-highlight;
+        color: white;
+      }
+    }
+
+    .action {
+      border-bottom: none;
+      color: red;
+
+      &:hover {
+        color: white;
+        background-color: red;
+      }
+    }
+  }
+}

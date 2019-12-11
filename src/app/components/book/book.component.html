@@ -1,0 +1,20 @@
+<article (click)="selectBook.emit(book)">
+  <h2 *ngIf="!this.book.imageLinks" class="alt-title">
+    {{ book.title }}
+  </h2>
+  <img [src]="cover" class="qa-cover" alt="placeholder" />
+  <img
+    class="qa-heart heart"
+    src="../../../assets/images/heart-open.png"
+    alt="Empty heart"
+    *ngIf="!book.favourite"
+    (click)="handleClick('open', $event)"
+  />
+  <img
+    class="qa-heart heart"
+    src="../../../assets/images/heart-closed.png"
+    alt="Empty heart"
+    *ngIf="book.favourite"
+    (click)="handleClick('closed', $event)"
+  />
+</article>

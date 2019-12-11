@@ -1,0 +1,76 @@
+@import "../../variables.scss";
+
+header {
+  height: 100%;
+  width: 100%;
+  height: $nav-height;
+  background-color: $primary-color;
+  padding: 0 $base-spacing * 2;
+  position: fixed;
+  z-index: 3;
+  @extend %flex-row-sb;
+
+  .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+
+    h1 {
+      padding-left: $base-spacing * 2;
+      margin-right: 0.25em;
+      font-family: Raleway, Helvetica, sans-serif;
+      font-weight: normal;
+      display: none;
+    }
+
+    img {
+      height: 35px;
+    }
+  }
+
+  .author-search {
+    height: 80%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-basis: 1;
+    margin-left: $base-spacing * 2;
+
+    .fa-wrap {
+      background-color: $secondary-color;
+      border-radius: 0 $border-rounding 0 $border-rounding;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 42px;
+      margin-left: $base-spacing * 3;
+      height: 35px !important;
+
+      &:hover,
+      &.active {
+        cursor: pointer;
+        background-color: white;
+
+        fa-icon {
+          color: $secondary-color;
+        }
+      }
+
+      fa-icon {
+        font-size: 1.25em;
+        color: white;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  header {
+    .logo {
+      h1 {
+        display: unset;
+      }
+    }
+  }
+}

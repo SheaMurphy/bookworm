@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+
+@import "./app/variables.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Raleway, sans-serif;
+}
+
+body {
+  max-width: 100vw;
+  min-height: 100vh;
+}
+
+.alt-text {
+  color: $faded-text;
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+*[ng-reflect-router-link] {
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

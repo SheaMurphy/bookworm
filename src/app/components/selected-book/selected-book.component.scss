@@ -1,0 +1,64 @@
+@import "../../variables.scss";
+
+.panel {
+  width: 700px;
+  height: 300px;
+  background-color: white;
+  border-top-right-radius: $border-rounding;
+  border-top-left-radius: $border-rounding;
+  padding: $base-spacing * 4;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  .left-side {
+    img {
+      margin-bottom: $base-spacing;
+      height: 100%;
+      width: calc(height / 1.5);
+    }
+  }
+
+  .details {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .heading {
+      margin-bottom: $base-spacing * 2;
+
+      img {
+        height: 1.2em;
+        display: inline-block;
+        margin-right: 1em;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      h2 {
+        display: inline-block;
+      }
+    }
+
+    p {
+      color: $faded-text;
+      margin-bottom: $base-spacing * 2;
+      text-align: justify;
+    }
+  }
+
+  fa-icon {
+    position: absolute;
+    top: $base-spacing * 2;
+    right: $base-spacing * 2;
+    font-size: 1.2em;
+
+    &:hover {
+      color: $primary-color;
+      cursor: pointer;
+    }
+  }
+}

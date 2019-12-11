@@ -1,0 +1,54 @@
+@import "src/app/variables.scss";
+
+.list {
+  position: absolute;
+  top: 100px;
+  z-index: 0;
+  width: 100vw;
+  height: calc(100% - 100px);
+  padding: $base-spacing * 2 0;
+
+  .loading-icon {
+    height: 25px;
+    width: 100px;
+    position: absolute;
+    top: calc(50% - 12px);
+    left: calc(50% - 50px);
+  }
+}
+
+.panel {
+  position: absolute;
+  z-index: 1;
+}
+
+.selected-book {
+  position: fixed;
+  top: 60px;
+  height: calc(100vh - 60px);
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba($color: #000000, $alpha: 0.7);
+
+  .panel {
+    position: fixed;
+    bottom: 0;
+    left: calc(50% - 350px);
+    right: calc(50% - 350px);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .list {
+    left: 265px;
+    top: 60px;
+    width: calc(100% - 265px);
+    height: calc(100% - 60px);
+
+    .loading-icon {
+      top: calc(50% - 12px);
+      left: calc(50% - 50px);
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@import "../../variables.scss";
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    height: 100%;
+    width: 22.5%;
+    background-color: $primary-tint;
+    border: solid 1px $secondary-color;
+    border-radius: 50%;
+    margin-top: 0;
+    transition: margin-top 600ms cubic-bezier(0.33333, 0.666667, 0.666667, 1),
+      background-color 600ms cubic-bezier(0.33333, 0.666667, 0.666667, 1);
+
+    &.half {
+      background-color: $primary-highlight;
+      transition: margin-top 600ms cubic-bezier(0.33333, 0.666667, 0.666667, 1),
+        background-color 600ms cubic-bezier(0.33333, 0.666667, 0.666667, 1);
+    }
+
+    &.full {
+      background-color: $primary-color;
+      margin-top: -10%;
+      transition: margin-top 600ms cubic-bezier(0.33333, 0.666667, 0.666667, 1),
+        background-color 600ms cubic-bezier(0.33333, 0.666667, 0.666667, 1);
+    }
+  }
+}
+
+img {
+  height: 100%;
+  width: 100%;
+}

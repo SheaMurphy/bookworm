@@ -1,0 +1,15 @@
+<div class="search">
+  <input
+    #search
+    [placeholder]="placeholder"
+    (keyup)="handleInput($event)"
+    [(ngModel)]="searchText"
+    type="text"
+  />
+  <div class="fa-wrap">
+    <fa-icon
+      (click)="handleSearch.emit(search.value)"
+      [icon]="faSearch"
+    ></fa-icon>
+  </div>
+</div>

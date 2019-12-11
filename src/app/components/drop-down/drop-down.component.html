@@ -1,0 +1,48 @@
+<div>
+  <button (click)="triggerAction()">
+    {{ label }}
+  </button>
+
+  <div class="fa-wrap" (click)="isOpen = !isOpen">
+    <fa-icon [icon]="faSortDown"></fa-icon>
+  </div>
+
+  <ul *ngIf="isOpen" (click)="isOpen = false">
+    <ng-content></ng-content>
+    <li class="action" *ngIf="actionLabel" (click)="action.emit()">
+      {{ actionLabel }}
+    </li>
+  </ul>
+</div>
+
+<!-- <app-card *ngIf="content | async as shea">
+  <ng-container header> </ng-container>
+  <ng-container main>
+    {{ shea.name }}
+    <ul>
+      <li></li>
+    </ul>
+  </ng-container>
+  <ng-container footer>
+    Footer text
+  </ng-container>
+</app-card>
+
+<app-card-header></app-card-header>
+<app-card-main></app-card-main>
+
+<app-primary-button color="red"> Click me! </app-primary-button>
+
+<app-form (submit)="doStuff()">
+  <input type="text" [ngModel]="firstName" />
+  <app-input-email
+    (validEmail)="fdj0qe()"
+    (invalidEmail)="(showError)"
+    [value]="emailAddress"
+  ></app-input-email>
+  <input
+    type="email"
+    (ngOnChange)="validateAndEmit($event)"
+    [ngModel]="value"
+  />
+</app-form> -->

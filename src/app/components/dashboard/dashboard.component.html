@@ -1,0 +1,32 @@
+<div class="panel">
+  <app-side-panel
+    (setFilters)="filteredList = filterBooks($event)"
+    [genres]="genres"
+    [maxPages]="maxPages"
+    [areBooksPresent]="books.length != 0"
+  ></app-side-panel>
+</div>
+
+<div class="list">
+  <div class="loading-icon">
+    <app-loading-icon *ngIf="loading"></app-loading-icon>
+  </div>
+  <app-book-list
+    *ngIf="!loading"
+    [books]="filteredList"
+    (addToFavourites)="addToFavourites($event)"
+    (removeFromFavourites)="removeFromFavourites($event)"
+    (selectBook)="setSelectedBook($event)"
+  ></app-book-list>
+</div>
+
+<div class="selected-book" *ngIf="selectedBook">
+  <div class="panel">
+    <app-selected-book
+      (closePanel)="closeSelectedPanel()"
+      (addToFavourites)="addToFavourites($event)"
+      (removeFromFavourites)="removeFromFavourites($event)"
+      [book]="selectedBook"
+    ></app-selected-book>
+  </div>
+</div>

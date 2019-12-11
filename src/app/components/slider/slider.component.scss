@@ -1,0 +1,84 @@
+@import "../../variables.scss";
+
+$lower-background: linear-gradient(
+    to bottom,
+    $secondary-color,
+    $secondary-color
+  )
+  100% 50% / 100% 6px no-repeat transparent;
+
+$upper-background: linear-gradient(
+    to bottom,
+    $secondary-highlight,
+    $secondary-highlight
+  )
+  100% 50% / 100% 6px no-repeat transparent;
+
+@function webkit-slider-thumb-shadow($i: 1) {
+  $val: #{$i}px 0 0 -#{(20px - 8px) / 2} #{$secondary-highlight};
+  @if $i == 1 {
+    @for $k from 2 through 1000 {
+      $val: #{$val}, webkit-slider-thumb-shadow($k);
+    }
+  }
+  @return $val;
+}
+
+div {
+  height: 100%;
+
+  input {
+    -webkit-appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    appearance: none;
+    overflow: hidden;
+    height: 20px;
+    outline: none;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    width: 100%;
+  }
+
+  input::-webkit-slider-runnable-track {
+    background: $lower-background;
+    height: 6px;
+    // border-radius: 10px;
+    max-width: 100%;
+  }
+
+  input::-webkit-slider-thumb {
+    position: relative;
+    appearance: none;
+    height: 18px;
+    width: 18px;
+    background: $secondary-color;
+    border-radius: 100%;
+    border: 0;
+    margin-top: -6px;
+    box-shadow: webkit-slider-thumb-shadow();
+    background-clip: content-box;
+    transition: background-color 150ms;
+  }
+
+  .values {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    p {
+      font-size: 1.25rem;
+      width: 4em;
+
+      &:last-child {
+        text-align: right;
+      }
+    }
+
+    .count {
+      font-weight: bold;
+      width: 5em;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<header>
+  <div routerLink="/dashboard" class="logo" routerLink="/">
+    <img src="../../../assets/images/logo-white.png" alt="logo-white" />
+
+    <h1>BookWorm</h1>
+  </div>
+
+  <div class="author-search">
+    <div class="search">
+      <app-search-bar
+        placeholder="Type an author to search"
+        (handleSearch)="searchAuthor($event)"
+      ></app-search-bar>
+    </div>
+    <div
+      class="qa-click fa-wrap"
+      routerLinkActive="active"
+      routerLink="/favourites"
+    >
+      <fa-icon [icon]="faHeart" class="qa-icon"></fa-icon>
+    </div>
+  </div>
+</header>

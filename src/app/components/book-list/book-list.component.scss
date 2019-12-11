@@ -1,0 +1,88 @@
+@import "../../variables.scss";
+
+section {
+  position: relative;
+  z-index: 0;
+  padding: $base-spacing * 2;
+  // background-color: $off-white;
+  height: 100%;
+
+  .book-grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, max-content);
+    z-index: 0;
+    grid-gap: 10vw;
+
+    div {
+      height: 53vw;
+      width: 35vw;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  p {
+    position: absolute;
+    top: calc(50% - 75px);
+    left: calc(50% - 125px);
+    width: 250px;
+    height: 150px;
+    font-size: 1.2em;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: solid $faded-text-light 2px;
+    border-radius: $border-rounding;
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  .flex {
+    min-height: calc(100vh - 100px);
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .loading {
+      height: 25px;
+      width: 100px;
+    }
+  }
+}
+
+@media only screen and (min-width: 450px) {
+  section {
+    .book-grid {
+      grid-template-columns: repeat(auto-fill, 185px);
+
+      div {
+        height: 38vw;
+        width: 25vw;
+      }
+    }
+
+    p {
+      top: calc(50% - 60px);
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  section {
+    .book-grid {
+      padding: 0;
+      grid-gap: 20px;
+      box-sizing: border-box;
+      width: 100%;
+
+      div {
+        height: 255px;
+        width: 165px;
+      }
+    }
+  }
+}

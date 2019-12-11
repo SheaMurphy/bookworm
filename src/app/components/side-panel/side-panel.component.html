@@ -1,0 +1,44 @@
+<section class="panel">
+  <div class="blocker" *ngIf="!areBooksPresent"></div>
+  <h2 (click)="handleMenuClick()">
+    <fa-icon [icon]="faFilter"></fa-icon>
+    Filters
+  </h2>
+
+  <div class="qa-menu" [class.hide]="!menuOpen">
+    <section class="filter">
+      <h3>Key words</h3>
+      <input
+        #input
+        type="text"
+        (input)="setFilter('searchText', input.value)"
+        placeholder="Search by keyword"
+      />
+    </section>
+
+    <section class="filter">
+      <h3>Number of pages</h3>
+      <app-slider
+        [max]="maxPages"
+        (handleInput)="filteredList = setFilter('pageCount', $event)"
+      ></app-slider>
+    </section>
+
+    <section class="dropdown filter">
+      <app-drop-down
+        [label]="currentGenre"
+        actionLabel="Remove filter"
+        (action)="resetFilters()"
+      >
+        <li
+          *ngFor="let genre of genres"
+          [ngClass]="{ active: genre === currentGenre }"
+          (click)="setFilter('genre', genre)"
+        >
+          {{ genre }}
+        </li>
+      </app-drop-down>
+    </section>
+    <button class="reset" (click)="resetFilters()">RESET ALL</button>
+  </div>
+</section>

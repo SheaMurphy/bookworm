@@ -1,0 +1,22 @@
+@import "../../variables.scss";
+
+.favourites {
+  width: 100%;
+
+  p {
+    position: absolute;
+    top: calc(50% - 60px);
+    left: calc(50% - 125px);
+    width: 250px;
+    height: 150px;
+    font-size: 1.2em;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: solid $faded-text-light 2px;
+    border-radius: $border-rounding;
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+}

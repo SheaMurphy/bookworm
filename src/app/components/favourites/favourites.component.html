@@ -1,0 +1,11 @@
+<div class="favourites">
+  <app-book-list
+    [books]="favourites"
+    (removeFromFavourites)="removeFromFavourites($event)"
+    *ngIf="favourites.length > 0"
+  ></app-book-list>
+  <p class="qa-feedback" *ngIf="favourites.length === 0">
+    Search our library for an author and begin adding to your favourites
+    collection
+  </p>
+</div>

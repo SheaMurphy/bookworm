@@ -1,0 +1,17 @@
+<div class="panel">
+  <div class="left-side">
+    <img [src]="book.imageLinks.thumbnail" alt="book" />
+  </div>
+  <div class="details">
+    <div>
+      <div class="heading">
+        <img [src]="favImg" (click)="toggleFav()" />
+        <h2>{{ book.title }}</h2>
+      </div>
+      <p>{{ book.publishedDate }}</p>
+      <p>{{ shortDescription }}</p>
+    </div>
+    <p>{{ book.pageCount }} pages</p>
+  </div>
+  <fa-icon [icon]="faTimes" (click)="closePanel.emit()"></fa-icon>
+</div>

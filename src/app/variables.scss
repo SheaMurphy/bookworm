@@ -1,0 +1,32 @@
+$primary-color: #bc1b8d;
+$primary-highlight: #db5daf;
+$primary-tint: #ecb7da;
+$secondary-color: #02b4e5;
+$secondary-highlight: #6cd6fa;
+$off-white: #f1f0f0;
+$faded-text-light: #959595;
+$faded-text: #4d4d4d;
+
+$base-spacing: 5px;
+$border-rounding: 10px;
+
+// Fixed heights & widths
+
+$nav-height: 60px;
+$divider-width: 4px;
+
+// BG images defaults
+
+%bg-image-center {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+// Flex style classes
+
+%flex-row-sb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

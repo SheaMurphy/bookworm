@@ -1,0 +1,42 @@
+@import "../../variables.scss";
+
+article {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 0 $base-spacing;
+  padding-bottom: $base-spacing * 6;
+  border-radius: $border-rounding;
+  text-align: center;
+  background-color: white;
+
+  &:hover {
+    cursor: pointer;
+    border: solid 2px $primary-color;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  h2 {
+    color: $secondary-color;
+    font-size: 1rem;
+    position: absolute;
+    top: calc(40% - 0.5rem);
+    left: 0;
+    right: 0;
+    padding: $base-spacing;
+  }
+
+  img {
+    height: 90%;
+    width: 98%;
+    margin-top: 5%;
+  }
+
+  .heart {
+    height: 10%;
+    width: 15%;
+  }
+}
