@@ -8,7 +8,7 @@ import { IBook } from "src/app/services/book/book.service";
   styleUrls: ["./favourites.component.scss"]
 })
 export class FavouritesComponent implements OnInit {
-  favourites: IBook[];
+  favourites: IBook[] = [];
 
   constructor(private favouriteService: FavouriteService) {}
 

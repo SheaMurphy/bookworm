@@ -36,7 +36,7 @@ export class FavouriteService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getAllBooks(): Promise<IBook[]> {
+  public getAllBooks(): Promise<IBook[]> {
     return this.httpClient
       .get("http://localhost:8090/api/books")
       .toPromise()
@@ -46,7 +46,7 @@ export class FavouriteService {
       });
   }
 
-  getBookById(searchId: string): Promise<IBook> {
+  public getBookById(searchId: string): Promise<IBook> {
     return this.httpClient
       .get("http://localhost:8090/api/books/" + searchId)
       .toPromise()
@@ -55,7 +55,7 @@ export class FavouriteService {
       });
   }
 
-  addBook(book: IBook): Promise<any> {
+  public addBook(book: IBook): Promise<IBook> {
     return this.httpClient
       .post<IBook>(
         "http://localhost:8090/api/books",
@@ -65,7 +65,7 @@ export class FavouriteService {
       .then(res => res);
   }
 
-  removeBook(book: IBook): Promise<void | IBook[]> {
+  public removeBook(book: IBook): Promise<void | IBook[]> {
     return this.httpClient
       .delete(`http://localhost:8090/api/books/'${book.id}'`)
       .toPromise()
@@ -77,14 +77,14 @@ export class FavouriteService {
       });
   }
 
-  checkIfFavourite(id: string): boolean {
+  public checkIfFavourite(id: string): boolean {
     return (
       this.favourites.filter((favourite: IBook) => favourite.id === id).length >
       0
     );
   }
 
-  mapEntityToIBook(entityBook: IEntityBook): IBook {
+  private mapEntityToIBook(entityBook: IEntityBook): IBook {
     const {
       title,
       description,
@@ -110,7 +110,7 @@ export class FavouriteService {
     return mappedIBook;
   }
 
-  mapIBookToEntity(book: IBook): IEntityBook {
+  private mapIBookToEntity(book: IBook): IEntityBook {
     const {
       id,
       title,
@@ -131,4 +131,14 @@ export class FavouriteService {
     };
     return mappedEntityBook;
   }
+}
+
+export class MockFavService {
+  favourites: IBook[] = [];
+  getAllBooks = (): Promise<IBook[]> => new Promise(() => mockBooks);
+  getBookById = (searchId: string): Promise<IBook> =>
+    new Promise(() => mockBooks[0]);
+  addBook = (book: IBook) => new Promise(() => mockBooks[0]);
+  removeBook = (book: IBook) => new Promise(() => mockBooks[0]);
+  checkIfFavourite = (id: string) => false;
 }

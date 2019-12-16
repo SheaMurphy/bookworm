@@ -42,15 +42,12 @@ export class BookService {
   author: Subject<string>;
   selectedBook: Subject<IBook | null>;
 
-  constructor(
-    private httpClient: HttpClient,
-    private favouriteService: FavouriteService
-  ) {
+  constructor(private httpClient: HttpClient) {
     this.author = new Subject();
     this.selectedBook = new Subject();
   }
 
-  fetchBooks(author: string): any {
+  fetchBooks(author: string): Promise<IBook[]> {
     return this.httpClient
       .get(
         "https://www.googleapis.com/books/v1/volumes?q=inauthor:" +
@@ -96,7 +93,7 @@ export class BookService {
     return Array.from(genreList).splice(0, 7);
   }
 
-  getPageCount(books: IBook[]) {
+  getPageCount(books: IBook[]): number {
     let topPageCount = 0;
     books.forEach(book => {
       const pages = book.pageCount;
@@ -111,14 +108,27 @@ export class BookService {
     this.author.next(author);
   }
 
-  setSelectedBook(book: IBook) {
+  setSelectedBook(book: IBook): void {
     this.selectedBook.next(book);
   }
 
-  checkMinDataViability(responseBook: IBookData) {
+  checkMinDataViability(responseBook: IBookData): boolean {
     const hasTitle = responseBook.volumeInfo.title !== undefined;
     const hasDescription = responseBook.volumeInfo.description !== undefined;
-    const hasImages = responseBook.volumeInfo.imageLinks !== undefined;
+    // const hasImages = responseBook.volumeInfo.imageLinks !== undefined;
     return hasTitle && hasDescription;
   }
+}
+
+@Injectable({
+  providedIn: "root"
+})
+export class MockBookService {
+  author: Subject<string> = new Subject();
+  selectedBook: Subject<IBook | null> = new Subject();
+  checkMinDataViability = (responseBook: IBookData) => true;
+  setAuthor = (author: string) => {};
+  setSelectedBook = (book: IBook) => {};
+  getGenres = (books: IBook[]) => [];
+  getPageCount = (books: IBook[]) => 0;
 }
