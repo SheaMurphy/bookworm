@@ -9,11 +9,18 @@ import { IBook } from "src/app/services/book/book.service";
 
 @Component({
   template: `
-    <app-book [book]="book"></app-book>
+    <app-book
+      [book]="book"
+      (selectBook)="selectBook($event)"
+      (handleHeartClick)="toggleFav()"
+      (handleOpenHeartClick)="toggleFav()"
+    ></app-book>
   `
 })
 class ParentComponent {
   book: IBook = emptyIBook;
+  selectBook = (input: any) => null;
+  toggleFav = () => null;
 }
 
 describe("Book component tests", () => {
@@ -27,17 +34,6 @@ describe("Book component tests", () => {
   it("should create", () => {
     expect(book.instance).toBeTruthy();
   });
-
-  it("should render one image element using the open-heart asset", () => {
-    expect(
-      book.query("img[src='../../../assets/images/heart-open.png']")
-    ).toBeTruthy();
-  });
-
-  // it("should render title from variable in .ts", () => {
-  //   book.setProps({ title: "Test string" });
-  //   expect(book.element.textContent).toContain("Test string");
-  // });
 
   it("should render the cover property as an image", () => {
     book.setProps({ cover: "../../../assets/images/book-not-found.png" });
@@ -80,16 +76,28 @@ describe("Book component integration tests", () => {
     expect(book.instance.book).toBe(mockBooks[1]);
   });
 
-  it("should take a book data object as input from it's parent component", () => {
-    book.setParentProps({
-      book: mockBooks[0]
-    });
-    expect(book.instance.book).toBe(mockBooks[0]);
+  it("should show open heart image when not a favourite", () => {
+    const notFavBook = mockBooks[1];
 
     book.setParentProps({
-      book: mockBooks[1]
+      book: notFavBook
     });
-    expect(book.instance.book).toBe(mockBooks[1]);
+
+    expect(
+      book.query("img[src='../../../assets/images/heart-open.png']")
+    ).toBeTruthy();
+  });
+
+  it("should show closed heart image when book is a favourite", () => {
+    const favBook = mockBooks[0];
+
+    book.setParentProps({
+      book: favBook
+    });
+
+    expect(
+      book.query("img[src='../../../assets/images/heart-closed.png']")
+    ).toBeTruthy();
   });
 
   it("should render the IBook title when there is no IBook imageLinks object", () => {
@@ -105,5 +113,52 @@ describe("Book component integration tests", () => {
       book: bookWithoutImages
     });
     expect(book.parentElement.textContent).toContain(bookWithoutImages.title);
+  });
+
+  it("should call parent function when component is clicked", () => {
+    const spy = spyOn(book.parentInstance, "selectBook");
+    book.triggerEvent("article", "click");
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it("should call parent function with book as argument when component is clicked", () => {
+    book.setParentProps({
+      book: mockBooks[0]
+    });
+    const spy = spyOn(book.parentInstance, "selectBook");
+    book.triggerEvent("article", "click");
+    expect(spy).toHaveBeenCalledWith(mockBooks[0]);
+  });
+
+  it("should call a parent function when the heart images are clicked", () => {
+    book.setParentProps({
+      book: mockBooks[0]
+    });
+    const spy = spyOn(book.parentInstance, "toggleFav");
+    book.triggerEvent(".heart", "click");
+    expect(spy).toHaveBeenCalled();
+    book.setParentProps({
+      book: mockBooks[0]
+    });
+    book.triggerEvent(".heart", "click");
+    expect(spy).toHaveBeenCalledTimes(2);
+  });
+
+  it("should not call parent function linked to main component click when heart image is clicked ", () => {
+    book.setParentProps({
+      book: mockBooks[0]
+    });
+    const spy = spyOn(book.parentInstance, "selectBook");
+    book.triggerEvent(".heart", "click");
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it("should call parent function linked to favourite click when heart image is clicked ", () => {
+    book.setParentProps({
+      book: mockBooks[0]
+    });
+    const spy = spyOn(book.parentInstance, "toggleFav");
+    book.triggerEvent(".heart", "click");
+    expect(spy).toHaveBeenCalled();
   });
 });

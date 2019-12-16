@@ -29,7 +29,7 @@ export const mockBooks: IBook[] = [
   },
   {
     id: "ML3_9m6LVhAC",
-    favourite: true,
+    favourite: false,
     title: "Close the Door Softly As You Go",
     publishedDate: "1982-01-01",
     pageCount: 880,
