@@ -16,12 +16,20 @@ export class SelectedBookComponent implements OnInit {
   favImg: string;
   shortDescription: string;
   faTimes = faTimes;
+  cover: string;
   heartClosed = "../../../assets/images/heart-closed.png";
   heartOpen = "../../../assets/images/heart-open.png";
 
   ngOnInit() {
     this.favImg = this.book.favourite ? this.heartClosed : this.heartOpen;
     this.shortDescription = this.shortenDescription(this.book.description);
+    this.cover = this.getCoverImage(this.book);
+  }
+
+  getCoverImage(book: IBook) {
+    return book.imageLinks
+      ? book.imageLinks.thumbnail
+      : "../../../assets/images/book-not-found.png";
   }
 
   shortenDescription(description: string): string {

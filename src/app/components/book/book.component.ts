@@ -14,7 +14,7 @@ export class BookComponent implements OnInit {
   @Output() selectBook = new EventEmitter();
 
   favourite: boolean;
-  cover = "";
+  cover: string;
 
   ngOnInit() {
     this.cover = this.getCoverImage(this.book);

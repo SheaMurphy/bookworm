@@ -60,26 +60,28 @@ export class BookService {
       )
       .toPromise()
       .then((res: IResponse): IBook[] => {
-        const books = res.items.map(item => {
-          const { volumeInfo, id } = item;
-          const {
-            title,
-            imageLinks,
-            categories,
-            pageCount,
-            description,
-            publishedDate
-          } = volumeInfo;
-          return {
-            id,
-            title,
-            imageLinks,
-            categories,
-            pageCount,
-            description,
-            publishedDate
-          };
-        });
+        const books = res.items
+          .filter(this.checkMinDataViability)
+          .map((book: IBookData) => {
+            const { volumeInfo, id } = book;
+            const {
+              title,
+              imageLinks,
+              categories,
+              pageCount,
+              description,
+              publishedDate
+            } = volumeInfo;
+            return {
+              id,
+              title,
+              imageLinks,
+              categories,
+              pageCount,
+              description,
+              publishedDate
+            };
+          });
         return books;
       })
       .catch((err: Error) => {
@@ -111,5 +113,12 @@ export class BookService {
 
   setSelectedBook(book: IBook) {
     this.selectedBook.next(book);
+  }
+
+  checkMinDataViability(responseBook: IBookData) {
+    const hasTitle = responseBook.volumeInfo.title !== undefined;
+    const hasDescription = responseBook.volumeInfo.description !== undefined;
+    const hasImages = responseBook.volumeInfo.imageLinks !== undefined;
+    return hasTitle && hasDescription;
   }
 }
