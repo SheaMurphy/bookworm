@@ -15,7 +15,7 @@ import {
 export class SliderComponent implements OnInit, OnChanges {
   @Input() max: number;
   @Output() handleInput = new EventEmitter();
-  value: number;
+  value: number = 0;
 
   ngOnInit() {
     this.initValue();

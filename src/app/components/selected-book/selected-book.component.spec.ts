@@ -1,16 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SelectedBookComponent } from './selected-book.component';
+import { SelectedBookComponent } from "./selected-book.component";
 
-describe('SelectedBookComponent', () => {
+describe("SelectedBookComponent", () => {
   let component: SelectedBookComponent;
   let fixture: ComponentFixture<SelectedBookComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectedBookComponent ]
-    })
-    .compileComponents();
+      declarations: [SelectedBookComponent],
+      imports: [FontAwesomeModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +20,7 @@ describe('SelectedBookComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -4,7 +4,8 @@ import {
   TestComponent,
   IntegrationComponent
 } from "@nology/angular-test-simplifier";
-import { emptyIBook, IBook, mockBooks } from "src/assets/data/book-data";
+import { emptyIBook, mockBooks } from "src/assets/data/book-data";
+import { IBook } from "src/app/services/book/book.service";
 
 @Component({
   template: `

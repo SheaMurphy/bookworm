@@ -1,3 +1,4 @@
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { DropdownComponent } from "./drop-down.component";
@@ -8,7 +9,8 @@ describe("DropdownComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DropdownComponent]
+      declarations: [DropdownComponent],
+      imports: [FontAwesomeModule]
     }).compileComponents();
   }));
 

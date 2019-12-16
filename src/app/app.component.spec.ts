@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { TestComponent } from "@nology/angular-test-simplifier";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { RouterTestingModule } from "@angular/router/testing";
 
 @Component({ selector: "app-dashboard", template: "" })
 class StubDashboardComponent {}
@@ -16,7 +17,7 @@ describe("AppComponent", () => {
     testApp = new TestComponent<AppComponent>(AppComponent);
     testApp.configure({
       declarations: [StubDashboardComponent, StubHeaderComponent],
-      imports: [FontAwesomeModule]
+      imports: [FontAwesomeModule, RouterTestingModule]
     });
     testApp.initialise();
   });

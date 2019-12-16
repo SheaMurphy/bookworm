@@ -1,10 +1,11 @@
-import { mockBooks, IBook } from "src/assets/data/book-data";
+import { mockBooks } from "src/assets/data/book-data";
 import { Component, Input } from "@angular/core";
 import { BookListComponent } from "./book-list.component";
 import {
   TestComponent,
   IntegrationComponent
 } from "@nology/angular-test-simplifier";
+import { IBook } from "src/app/services/book/book.service";
 
 @Component({ selector: "app-book", template: "" })
 class StubBookComponent {

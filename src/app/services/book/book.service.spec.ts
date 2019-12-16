@@ -1,11 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { TestBed } from "@angular/core/testing";
 
-import { BookService } from './book.service';
+import { BookService } from "./book.service";
 
-describe('BookService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe("BookService", () => {
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      providers: [HttpClientTestingModule]
+    })
+  );
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: BookService = TestBed.get(BookService);
     expect(service).toBeTruthy();
   });

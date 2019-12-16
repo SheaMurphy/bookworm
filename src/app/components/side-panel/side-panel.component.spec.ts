@@ -9,28 +9,27 @@ import { Component, Input } from "@angular/core";
 
 @Component({
   template: `
-    <app-side-panel
-      (handleResetClick)="testEmitter()"
-      (handleSearch)="testEmitter($event)"
-    ></app-side-panel>
+    <app-side-panel (handleResetClick)="testEmitter()"></app-side-panel>
   `
 })
 class ParentComponent {
+  areBooksPresent: boolean;
+  maxPages: number;
+  genres: Array<string>;
+
   testEmitter(search: string) {
     return search;
   }
 }
 
-@Component({ selector: "app-dropdown", template: "" })
+@Component({ selector: "app-drop-down", template: "" })
 class StubDropdownComponent {
   @Input() label: string;
 }
 
 @Component({ selector: "app-slider", template: "" })
 class StubSliderComponent {
-  @Input() min: string;
   @Input() max: string;
-  @Input() value: string;
 }
 
 describe("SidePanelComponent", () => {

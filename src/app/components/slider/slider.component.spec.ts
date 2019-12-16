@@ -7,13 +7,15 @@ import { Component } from "@angular/core";
 
 @Component({
   template: `
-    <app-slider [min]="min" [max]="max" [value]="value"></app-slider>
+    <app-slider [max]="max" (handleInput)="testFunction($event)"></app-slider>
   `
 })
 class ParentComponent {
-  min: string;
   max: string;
-  value: string;
+
+  testFunction = () => {
+    return null;
+  };
 }
 
 describe("Slider component tests", () => {
@@ -34,16 +36,14 @@ describe("Slider component tests", () => {
 
   it("should render the min, max and value properties from the .ts on the page", () => {
     testSlider.setProps({
-      min: 0,
-      max: 9,
-      value: 12
+      max: 10
     });
 
     const { textContent } = testSlider.element;
 
     expect(textContent).toContain("0");
     expect(textContent).toContain("9");
-    expect(textContent).toContain("12");
+    expect(textContent).toContain("5");
   });
 
   it("should render the max property as the value for input element's max attribute", () => {
@@ -113,21 +113,13 @@ describe("Slider component integration tests", () => {
 
   it("should take min, max and value numeric values as inputs", () => {
     testSlider.setParentProps({
-      min: 0,
-      max: 999,
-      value: 500
+      max: 999
     });
-    expect(testSlider.instance.min).toBe(0);
     expect(testSlider.instance.max).toBe(999);
-    expect(testSlider.instance.value).toBe(500);
 
     testSlider.setParentProps({
-      min: 20,
-      max: 100,
-      value: 60
+      max: 100
     });
-    expect(testSlider.instance.min).toBe(20);
     expect(testSlider.instance.max).toBe(100);
-    expect(testSlider.instance.value).toBe(60);
   });
 });
