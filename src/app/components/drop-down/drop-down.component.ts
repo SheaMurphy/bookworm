@@ -9,7 +9,7 @@ import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 export class DropdownComponent {
   @Input() label: string;
   @Input() actionLabel?: string;
-  @Output() action? = new EventEmitter();
+  @Output() action = new EventEmitter();
 
   faSortDown = faSortDown;
   isOpen = false;
@@ -18,6 +18,10 @@ export class DropdownComponent {
     if (this.isOpen === true) {
       this.action.emit();
     }
+    this.toggleDropDown();
+  }
+
+  toggleDropDown() {
     this.isOpen = !this.isOpen;
   }
 }

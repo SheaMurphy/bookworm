@@ -38,7 +38,7 @@ export class FavouriteService {
 
   public getAllBooks(): Promise<IBook[]> {
     return this.httpClient
-      .get("http://localhost:8090/api/books")
+      .get("http://localhost:8080/api/books")
       .toPromise()
       .then((favs: IEntityBook[]) => {
         const books = favs.map(this.mapEntityToIBook);
@@ -48,7 +48,7 @@ export class FavouriteService {
 
   public getBookById(searchId: string): Promise<IBook> {
     return this.httpClient
-      .get("http://localhost:8090/api/books/" + searchId)
+      .get("http://localhost:8080/api/books/" + searchId)
       .toPromise()
       .then((fav: IEntityBook) => {
         return this.mapEntityToIBook(fav);
@@ -58,7 +58,7 @@ export class FavouriteService {
   public addBook(book: IBook): Promise<IBook> {
     return this.httpClient
       .post<IBook>(
-        "http://localhost:8090/api/books",
+        "http://localhost:8080/api/books",
         this.mapIBookToEntity(book)
       )
       .toPromise()
@@ -67,7 +67,7 @@ export class FavouriteService {
 
   public removeBook(book: IBook): Promise<void | IBook[]> {
     return this.httpClient
-      .delete(`http://localhost:8090/api/books/'${book.id}'`)
+      .delete(`http://localhost:8080/api/books/'${book.id}'`)
       .toPromise()
       .then((res: IEntityBook) => {
         return this.getAllBooks();

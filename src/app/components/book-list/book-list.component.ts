@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { IBook } from "src/app/services/book/book.service";
 
 @Component({
@@ -6,11 +6,9 @@ import { IBook } from "src/app/services/book/book.service";
   templateUrl: "./book-list.component.html",
   styleUrls: ["./book-list.component.scss"]
 })
-export class BookListComponent implements OnInit {
+export class BookListComponent {
   @Input() books: IBook[] = [];
   @Output() addToFavourites = new EventEmitter();
   @Output() removeFromFavourites = new EventEmitter();
   @Output() selectBook = new EventEmitter();
-
-  ngOnInit() {}
 }

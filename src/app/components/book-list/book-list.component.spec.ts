@@ -1,5 +1,5 @@
 import { mockBooks } from "src/assets/data/book-data";
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { BookListComponent } from "./book-list.component";
 import {
   TestComponent,
@@ -7,18 +7,27 @@ import {
 } from "@nology/angular-test-simplifier";
 import { IBook } from "src/app/services/book/book.service";
 
-@Component({ selector: "app-book", template: "" })
+@Component({
+  selector: "app-book",
+  template: ""
+})
 class StubBookComponent {
   @Input() book: IBook;
 }
 
 @Component({
   template: `
-    <app-book-list [books]="books"></app-book-list>
+    <app-book-list
+      [books]="books"
+      (addToFavourites)="testFunc($event)"
+      (removeFromFavourites)="testFunc($event)"
+      (selectBook)="testFunc($event)"
+    ></app-book-list>
   `
 })
 class ParentComponent {
   books: IBook[] = [];
+  testFunc = (input: any) => null;
 }
 
 describe("BookListComponent", () => {
@@ -33,10 +42,6 @@ describe("BookListComponent", () => {
   it("should create", () => {
     expect(testBookList.instance).toBeTruthy();
   });
-
-  // it("should render at least one instance of the book component", () => {
-  //   expect(testBookList.query("app-book")).toBeTruthy();
-  // });
 });
 
 describe("BookList component integration tests", () => {
@@ -82,4 +87,13 @@ describe("BookList component integration tests", () => {
     });
     expect(testBookList.query(".qa-feedback")).toBeTruthy();
   });
+
+  // it("should call parent function with appropriate book as argument when a book is clicked", () => {
+  //   testBookList.setParentProps({
+  //     books: [mockBooks[0]]
+  //   });
+  //   const spy = spyOn(testBookList.parentInstance, "testFunc");
+  //   testBookList.triggerEvent("app-book", "click");
+  //   expect(spy).toHaveBeenCalled();
+  // });
 });

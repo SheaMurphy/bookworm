@@ -24,79 +24,79 @@ class ParentComponent {
 }
 
 describe("Book component tests", () => {
-  let book: TestComponent<BookComponent>;
+  let testBook: TestComponent<BookComponent>;
 
   beforeEach(() => {
-    book = new TestComponent<BookComponent>(BookComponent);
-    book.initialise();
+    testBook = new TestComponent<BookComponent>(BookComponent);
+    testBook.initialise();
   });
 
   it("should create", () => {
-    expect(book.instance).toBeTruthy();
+    expect(testBook.instance).toBeTruthy();
   });
 
   it("should render the cover property as an image", () => {
-    book.setProps({ cover: "../../../assets/images/book-not-found.png" });
-    expect(book.query(".qa-cover").getAttribute("src")).toBe(
+    testBook.setProps({ cover: "../../../assets/images/book-not-found.png" });
+    expect(testBook.query(".qa-cover").getAttribute("src")).toBe(
       "../../../assets/images/book-not-found.png"
     );
   });
 
   it("getCoverImage() should return the correct cover img based on thumbnail being present", () => {
     const bookWithImages = mockBooks[0];
-    let result = book.instance.getCoverImage(bookWithImages);
+    let result = testBook.instance.getCoverImage(bookWithImages);
     expect(result).toEqual(bookWithImages.imageLinks.thumbnail);
 
     const bookWithoutImages = mockBooks[2];
-    result = book.instance.getCoverImage(bookWithoutImages);
+    result = testBook.instance.getCoverImage(bookWithoutImages);
     expect(result).toEqual("../../../assets/images/book-not-found.png");
   });
 });
 
 describe("Book component integration tests", () => {
-  let book: IntegrationComponent<BookComponent, ParentComponent>;
+  let testBook: IntegrationComponent<BookComponent, ParentComponent>;
 
   beforeEach(() => {
-    book = new IntegrationComponent<BookComponent, ParentComponent>(
+    testBook = new IntegrationComponent<BookComponent, ParentComponent>(
       BookComponent,
       ParentComponent
     );
-    book.initialise();
+    testBook.initialise();
   });
 
   it("should take a book data object as input from it's parent component", () => {
-    book.setParentProps({
+    testBook.setParentProps({
       book: mockBooks[0]
     });
-    expect(book.instance.book).toBe(mockBooks[0]);
+    expect(testBook.instance.book).toBe(mockBooks[0]);
 
-    book.setParentProps({
+    testBook.setParentProps({
       book: mockBooks[1]
     });
-    expect(book.instance.book).toBe(mockBooks[1]);
+    expect(testBook.instance.book).toBe(mockBooks[1]);
   });
 
   it("should show open heart image when not a favourite", () => {
     const notFavBook = mockBooks[1];
 
-    book.setParentProps({
+    testBook.setParentProps({
       book: notFavBook
     });
 
     expect(
-      book.query("img[src='../../../assets/images/heart-open.png']")
+      testBook.query("img[src='../../../assets/images/heart-open.png']")
     ).toBeTruthy();
   });
 
   it("should show closed heart image when book is a favourite", () => {
     const favBook = mockBooks[0];
 
-    book.setParentProps({
+    testBook.setParentProps({
       book: favBook
     });
 
     expect(
-      book.query("img[src='../../../assets/images/heart-closed.png']")
+      testBook.query("img[src='../../../assets/images/heart-closed.png']")
     ).toBeTruthy();
   });
 
@@ -104,61 +104,65 @@ describe("Book component integration tests", () => {
     const bookWithImages = mockBooks[0];
     const bookWithoutImages = mockBooks[2];
 
-    book.setParentProps({
+    testBook.setParentProps({
       book: bookWithImages
     });
-    expect(book.parentElement.textContent).not.toContain(bookWithImages.title);
+    expect(testBook.parentElement.textContent).not.toContain(
+      bookWithImages.title
+    );
 
-    book.setParentProps({
+    testBook.setParentProps({
       book: bookWithoutImages
     });
-    expect(book.parentElement.textContent).toContain(bookWithoutImages.title);
+    expect(testBook.parentElement.textContent).toContain(
+      bookWithoutImages.title
+    );
   });
 
   it("should call parent function when component is clicked", () => {
-    const spy = spyOn(book.parentInstance, "selectBook");
-    book.triggerEvent("article", "click");
+    const spy = spyOn(testBook.parentInstance, "selectBook");
+    testBook.triggerEvent("article", "click");
     expect(spy).toHaveBeenCalled();
   });
 
   it("should call parent function with book as argument when component is clicked", () => {
-    book.setParentProps({
+    testBook.setParentProps({
       book: mockBooks[0]
     });
-    const spy = spyOn(book.parentInstance, "selectBook");
-    book.triggerEvent("article", "click");
+    const spy = spyOn(testBook.parentInstance, "selectBook");
+    testBook.triggerEvent("article", "click");
     expect(spy).toHaveBeenCalledWith(mockBooks[0]);
   });
 
   it("should call a parent function when the heart images are clicked", () => {
-    book.setParentProps({
+    testBook.setParentProps({
       book: mockBooks[0]
     });
-    const spy = spyOn(book.parentInstance, "toggleFav");
-    book.triggerEvent(".heart", "click");
+    const spy = spyOn(testBook.parentInstance, "toggleFav");
+    testBook.triggerEvent(".heart", "click");
     expect(spy).toHaveBeenCalled();
-    book.setParentProps({
+    testBook.setParentProps({
       book: mockBooks[0]
     });
-    book.triggerEvent(".heart", "click");
+    testBook.triggerEvent(".heart", "click");
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
   it("should not call parent function linked to main component click when heart image is clicked ", () => {
-    book.setParentProps({
+    testBook.setParentProps({
       book: mockBooks[0]
     });
-    const spy = spyOn(book.parentInstance, "selectBook");
-    book.triggerEvent(".heart", "click");
+    const spy = spyOn(testBook.parentInstance, "selectBook");
+    testBook.triggerEvent(".heart", "click");
     expect(spy).not.toHaveBeenCalled();
   });
 
   it("should call parent function linked to favourite click when heart image is clicked ", () => {
-    book.setParentProps({
+    testBook.setParentProps({
       book: mockBooks[0]
     });
-    const spy = spyOn(book.parentInstance, "toggleFav");
-    book.triggerEvent(".heart", "click");
+    const spy = spyOn(testBook.parentInstance, "toggleFav");
+    testBook.triggerEvent(".heart", "click");
     expect(spy).toHaveBeenCalled();
   });
 });
