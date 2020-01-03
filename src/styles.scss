@@ -9,6 +9,10 @@
   margin: 0;
   box-sizing: border-box;
   font-family: Raleway, sans-serif;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 body {
@@ -28,9 +32,5 @@ body {
 *[ng-reflect-router-link] {
   &:hover {
     cursor: pointer;
-  }
-
-  &:focus {
-    outline: none;
   }
 }
