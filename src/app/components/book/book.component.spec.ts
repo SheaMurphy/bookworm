@@ -42,7 +42,7 @@ describe("Book component tests", () => {
     );
   });
 
-  it("getCoverImage() should return the correct cover img based on thumbnail being present", () => {
+  it("should return the correct cover img based on thumbnail being present from getCoverImage() method", () => {
     const bookWithImages = mockBooks[0];
     let result = testBook.instance.getCoverImage(bookWithImages);
     expect(result).toEqual(bookWithImages.imageLinks.thumbnail);
@@ -100,7 +100,7 @@ describe("Book component integration tests", () => {
     ).toBeTruthy();
   });
 
-  it("should render the IBook title when there is no IBook imageLinks object", () => {
+  it("should render the IBook title when there are no image urls", () => {
     const bookWithImages = mockBooks[0];
     const bookWithoutImages = mockBooks[2];
 
@@ -119,13 +119,13 @@ describe("Book component integration tests", () => {
     );
   });
 
-  it("should call parent function when component is clicked", () => {
+  it("should call parent function when book comp is clicked", () => {
     const spy = spyOn(testBook.parentInstance, "selectBook");
     testBook.triggerEvent("article", "click");
     expect(spy).toHaveBeenCalled();
   });
 
-  it("should call parent function with book as argument when component is clicked", () => {
+  it("should call parent function with book as argument when book comp is clicked", () => {
     testBook.setParentProps({
       book: mockBooks[0]
     });
@@ -148,7 +148,7 @@ describe("Book component integration tests", () => {
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
-  it("should not call parent function linked to main component click when heart image is clicked ", () => {
+  it("should not call parent method 'select book' when heart image is clicked", () => {
     testBook.setParentProps({
       book: mockBooks[0]
     });
@@ -157,7 +157,7 @@ describe("Book component integration tests", () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it("should call parent function linked to favourite click when heart image is clicked ", () => {
+  it("should call parent method linked to favourite toggling when heart image is clicked", () => {
     testBook.setParentProps({
       book: mockBooks[0]
     });

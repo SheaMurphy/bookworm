@@ -74,6 +74,9 @@ export class DashboardComponent implements OnInit {
 
   filterBooks(filters: IFilters) {
     this.filters = filters;
+    // console.log(this.books);
+    // console.log(this.filters);
+    // console.log(this.filterServiceService.filterBooks(this.books, filters));
     return this.filterServiceService.filterBooks(this.books, filters);
   }
 

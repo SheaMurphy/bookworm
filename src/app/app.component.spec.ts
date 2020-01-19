@@ -4,9 +4,6 @@ import { TestComponent } from "@nology/angular-test-simplifier";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { RouterTestingModule } from "@angular/router/testing";
 
-@Component({ selector: "app-dashboard", template: "" })
-class StubDashboardComponent {}
-
 @Component({ selector: "app-header", template: "" })
 class StubHeaderComponent {}
 
@@ -16,7 +13,7 @@ describe("AppComponent", () => {
   beforeEach(() => {
     testApp = new TestComponent<AppComponent>(AppComponent);
     testApp.configure({
-      declarations: [StubDashboardComponent, StubHeaderComponent],
+      declarations: [StubHeaderComponent],
       imports: [FontAwesomeModule, RouterTestingModule]
     });
     testApp.initialise();
