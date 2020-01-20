@@ -1,6 +1,6 @@
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { Component, Output, EventEmitter, Input } from "@angular/core";
-import { IFilters } from "../dashboard/dashboard.component";
+import { IFilters } from "src/app/services/filter/filter-service.service";
 
 @Component({
   selector: "app-side-panel",
@@ -11,21 +11,25 @@ export class SidePanelComponent {
   @Input() areBooksPresent: boolean;
   @Input() maxPages: number;
   @Input() genres: string[];
-  @Output() setFilters = new EventEmitter();
+  @Output() setFilters = new EventEmitter<IFilters>();
 
-  currentGenre: string = "Choose a genre";
+  dropdownLabel = "Choose a genre";
   faFilter = faFilter;
   menuOpen = false;
   filters: IFilters = {
-    genre: "",
     searchText: "",
-    pageCount: 0
+    pageCount: 0,
+    genre: ""
   };
 
   setFilter(filterType: string, event: boolean | number | string) {
     this.filters[filterType] = event;
-    this.currentGenre = this.filters.genre;
+    this.dropdownLabel = this.getDropdownLabel(this.filters.genre);
     this.setFilters.emit(this.filters);
+  }
+
+  getDropdownLabel(selectedGenre: string) {
+    return selectedGenre ? selectedGenre : "Choose a genre";
   }
 
   handleMenuClick(): void {
@@ -33,11 +37,12 @@ export class SidePanelComponent {
   }
 
   resetFilters(): void {
-    this.setFilters.emit({
+    this.filters = {
       searchText: "",
-      maxPages: 0,
-      genres: []
-    });
-    this.currentGenre = "Choose a genre";
+      pageCount: 0,
+      genre: ""
+    };
+    this.setFilters.emit(this.filters);
+    this.dropdownLabel = "Choose a genre";
   }
 }

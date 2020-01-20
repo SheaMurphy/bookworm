@@ -1,6 +1,11 @@
 import { Injectable } from "@angular/core";
-import { IFilters } from "src/app/components/dashboard/dashboard.component";
 import { IBook } from "../book/book.service";
+
+export interface IFilters {
+  pageCount: number;
+  genre: string;
+  searchText: string;
+}
 
 @Injectable({
   providedIn: "root"

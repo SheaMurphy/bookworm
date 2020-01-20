@@ -13,6 +13,7 @@
         type="text"
         (input)="setFilter('searchText', input.value)"
         placeholder="Search by keyword"
+        [value]="filters.searchText"
       />
     </section>
 
@@ -20,19 +21,20 @@
       <h3>Number of pages</h3>
       <app-slider
         [max]="maxPages"
+        [value]="filters.pageCount"
         (handleInput)="setFilter('pageCount', $event)"
       ></app-slider>
     </section>
 
     <section class="dropdown filter">
       <app-drop-down
-        [label]="currentGenre"
+        [label]="dropdownLabel"
         actionLabel="Remove filter"
         (action)="resetFilters()"
       >
         <li
           *ngFor="let genre of genres"
-          [ngClass]="{ active: genre === currentGenre }"
+          [ngClass]="{ active: genre === dropdownLabel }"
           (click)="setFilter('genre', genre)"
         >
           {{ genre }}

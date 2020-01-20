@@ -14,9 +14,9 @@ $upper-background: linear-gradient(
   )
   100% 50% / 100% 6px no-repeat transparent;
 
-@function webkit-slider-thumb-shadow($i: 1) {
-  $val: #{$i}px 0 0 -#{(20px - 8px) / 2} #{$secondary-highlight};
-  @if $i == 1 {
+@function webkit-slider-thumb-shadow($input: 1) {
+  $val: #{$input}px 0 0 -#{6px} #{$secondary-highlight};
+  @if $input == 1 {
     @for $k from 2 through 1000 {
       $val: #{$val}, webkit-slider-thumb-shadow($k);
     }
@@ -50,6 +50,7 @@ div {
   input::-webkit-slider-thumb {
     position: relative;
     appearance: none;
+    left: var(--distance);
     height: 18px;
     width: 18px;
     background: $secondary-color;

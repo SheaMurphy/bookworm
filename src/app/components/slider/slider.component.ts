@@ -14,8 +14,9 @@ import {
 })
 export class SliderComponent implements OnInit, OnChanges {
   @Input() max: number;
+  @Input() value: number;
   @Output() handleInput = new EventEmitter();
-  value: number = 0;
+  distance = "90%";
 
   ngOnInit() {
     this.initValue();
@@ -26,7 +27,7 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   initValue() {
-    this.value = Math.floor((0 + this.max) / 2);
+    this.value = this.max;
   }
 
   handleSlide(slideValue: string) {

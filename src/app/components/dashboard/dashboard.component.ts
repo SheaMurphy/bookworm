@@ -1,15 +1,12 @@
-import { FilterServiceService } from "./../../services/filter/filter-service.service";
+import {
+  FilterServiceService,
+  IFilters
+} from "./../../services/filter/filter-service.service";
 import { Component, OnInit } from "@angular/core";
 import { BookService, IBook } from "src/app/services/book/book.service";
 import { Subscription } from "rxjs";
 import { Router } from "@angular/router";
 import { FavouriteService } from "src/app/services/favourite/favourite.service";
-
-export interface IFilters {
-  pageCount: number;
-  genre: string;
-  searchText: string;
-}
 
 @Component({
   selector: "app-dashboard",
