@@ -34,7 +34,11 @@ const mockEntityBooks: IEntityBook[] = [
 export class FavouriteService {
   favourites: IBook[] = [];
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    this.getAllBooks().then(favs => {
+      this.favourites = favs;
+    });
+  }
 
   public getAllBooks(): Promise<IBook[]> {
     return this.httpClient

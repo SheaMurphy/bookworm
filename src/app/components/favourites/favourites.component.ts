@@ -13,12 +13,17 @@ export class FavouritesComponent implements OnInit {
   constructor(private favouriteService: FavouriteService) {}
 
   ngOnInit() {
-    this.favouriteService.getAllBooks().then(data => (this.favourites = data));
+    this.syncFavouritesWithService();
+  }
+
+  syncFavouritesWithService() {
+    this.favourites = this.favouriteService.favourites;
   }
 
   removeFromFavourites(book: IBook) {
     this.favouriteService
       .removeBook(book)
       .then((favs: IBook[]) => (this.favourites = favs));
+    this.syncFavouritesWithService();
   }
 }

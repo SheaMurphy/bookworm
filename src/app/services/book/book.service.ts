@@ -1,4 +1,3 @@
-import { IVolumeInfo } from "./book.service";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
@@ -42,7 +41,10 @@ export class BookService {
   author: Subject<string>;
   selectedBook: Subject<IBook | null>;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private favouriteService: FavouriteService
+  ) {
     this.author = new Subject();
     this.selectedBook = new Subject();
   }
@@ -76,7 +78,8 @@ export class BookService {
               categories,
               pageCount,
               description,
-              publishedDate
+              publishedDate,
+              favoutite: this.favouriteService.checkIfFavourite(id)
             };
           });
         return books;
@@ -88,7 +91,7 @@ export class BookService {
   }
 
   getGenres(books: IBook[]): string[] {
-    const genreList = new Set();
+    const genreList = new Set<string>();
     books.forEach(book => book.categories && genreList.add(book.categories[0]));
     return Array.from(genreList).splice(0, 7);
   }
@@ -115,7 +118,6 @@ export class BookService {
   checkMinDataViability(responseBook: IBookData): boolean {
     const hasTitle = responseBook.volumeInfo.title !== undefined;
     const hasDescription = responseBook.volumeInfo.description !== undefined;
-    // const hasImages = responseBook.volumeInfo.imageLinks !== undefined;
     return hasTitle && hasDescription;
   }
 }
