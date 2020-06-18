@@ -9,6 +9,7 @@ import { IBook } from "src/app/services/book/book.service";
 })
 export class FavouritesComponent implements OnInit {
   favourites: IBook[] = [];
+  loading = false;
 
   constructor(private favouriteService: FavouriteService) {}
 
@@ -17,13 +18,15 @@ export class FavouritesComponent implements OnInit {
   }
 
   syncFavouritesWithService() {
-    this.favourites = this.favouriteService.favourites;
+    this.loading = true;
+    this.favouriteService.getAllBooks().then(favs => {
+      this.favourites = favs;
+      this.loading = false;
+    });
   }
 
   removeFromFavourites(book: IBook) {
-    this.favouriteService
-      .removeBook(book)
-      .then((favs: IBook[]) => (this.favourites = favs));
-    this.syncFavouritesWithService();
+    this.favourites.splice(this.favourites.indexOf(book));
+    this.favouriteService.removeBook(book);
   }
 }

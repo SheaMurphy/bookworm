@@ -8,6 +8,7 @@ section {
   height: 100%;
 
   .book-grid {
+    // background-color: red;
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(2, max-content);

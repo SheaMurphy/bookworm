@@ -1,4 +1,4 @@
-<div class="favourites">
+<div class="favourites" *ngIf="!loading">
   <app-book-list
     [books]="favourites"
     (removeFromFavourites)="removeFromFavourites($event)"
@@ -9,3 +9,4 @@
     collection
   </p>
 </div>
+<app-loading-icon *ngIf="loading">LOADING</app-loading-icon>
